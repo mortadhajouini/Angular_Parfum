@@ -1,0 +1,15 @@
+<form>
+    <div>
+        <label>ID Odeur</label>
+        <input type="text" [(ngModel)]="odeur.idOdeur" name="idOdeur" class="form-control w-25">
+    </div>
+    <div>
+        <label>Nom Odeur</label>
+        <input type="text" [(ngModel)]="odeur.nomOdeur" name="nomOdeur" class="form-control"
+            placeholder="Entrez un nom de odeur...">
+    </div>
+    <div class="mt-2">
+        <button type="submit" [disabled]="!odeur.nomOdeur" class="btn btn-success"
+            (click)="saveOdeur()">{{ajout ? 'Ajouter' : 'Modifier'}}</button>
+    </div>
+</form>

@@ -1,0 +1,80 @@
+<div class="container">
+  <div>
+    <h2>Ajouter une Parfum :</h2>
+  </div>
+  <form [formGroup]="myForm">
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Parfum</label>
+      <input type="text" formControlName="idParfum" [(ngModel)]="newParfum.idParfum" name="idParfum" class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['idParfum'].hasError('required')&& myForm.controls['idParfum'].touched"
+      class="text-danger">
+      id Parfum est obligatoire
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Parfum</label>
+      <input type="text" formControlName="nomParfum" [(ngModel)]="newParfum.nomParfum" name="nomParfum" class="form-control">
+    </div> <span *ngIf="myForm.controls['nomParfum'].hasError('required')&& myForm.controls['nomParfum'].touched"
+      class="text-danger">
+      Nom de Parfum est obligatoire
+    </span>
+    <span *ngIf="myForm.controls['nomParfum'].hasError('minlength')&& myForm.controls['nomParfum'].touched"
+      class="text-danger">
+      le nom de Parfum doit contenir au moins 5 caractères
+    </span>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix Parfum</label>
+      <input type="number" formControlName="prixParfum" [(ngModel)]="newParfum.prixParfum" name="prixParfum"
+        class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['prixParfum'].hasError('required')&& myForm.controls['prixParfum'].touched"
+      class="text-danger">
+      le prix de Parfum est obligatoire
+    </span>
+    <span *ngIf="myForm.controls['prixParfum'].hasError('min') && myForm.controls['prixParfum'].touched"
+      class="text-danger">
+      Le prix de Parfum doit être supérieur ou égal à 0
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date création</label>
+      <input type="date" formControlName="datedeSortie" [(ngModel)]="newParfum.datedeSortie" name="datedeSortie"
+        class="form-control">
+    </div>
+    <span *ngIf="myForm.controls['datedeSortie'].hasError('required')&& myForm.controls['datedeSortie'].touched"
+      class="text-danger">
+      la date de création de Parfum est obligatoire
+    </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>email :</label>
+      <input type="text" name="email" class="form-control" formControlName="email" [(ngModel)]="newParfum.email">
+    </div>
+    <span *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched" class="text-danger">
+      email est obligatoire
+    </span>
+    <span *ngIf="myForm.controls['email'].hasError('email')&&  myForm.controls['email'].touched" class="text-danger">
+      email non valide
+    </span>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>odeur</label>
+      <select class="form-control form-control-lg" id="idodeur" name="idodeur" formControlName="odeur"
+        [(ngModel)]="newIdOdeur">
+        <option *ngFor="let odeur of odeurs" [value]="odeur.idOdeur">
+          {{odeur.nomOdeur}}
+        </option>
+      </select>
+      <span *ngIf="myForm.controls['odeur'].hasError('required')&& myForm.controls['odeur'].touched"
+        class="text-danger">
+        La odeur de Parfum est obligatoire
+      </span>
+    </div>
+
+    <div class="mt-2">
+      <button type="submit" [disabled]="myForm.invalid" (click)="addParfum()" class="btn btn-success">Ajouter</button>
+    </div>
+  </form>
+</div>
